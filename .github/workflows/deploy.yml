@@ -5,6 +5,10 @@ on:
     branches:
       - main
 
+permissions:
+  id-token: write
+  contents: read
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -23,11 +27,11 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Deploy to Firebase Hosting
-        uses: FirebaseExtended/action-hosting-deploy@v0
+      - name: Authenticate to Google Cloud
+        uses: google-github-actions/auth@v2
         with:
-          repoToken: ${{ secrets.GITHUB_TOKEN }}
-          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
-          projectId: mole-burrow
-          target: devtools-wsgrok
-          channelId: live
+          workload_identity_provider: projects/262709874639/locations/global/workloadIdentityPools/github-pool/providers/github-provider
+          service_account: github-deploy@mole-burrow.iam.gserviceaccount.com
+
+      - name: Deploy to Firebase Hosting
+        run: npx firebase-tools deploy --only hosting --project mole-burrow
