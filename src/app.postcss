@@ -12,3 +12,18 @@
     @apply text-surface-100;
   }
 }
+
+@layer utilities {
+  .mobile-sidebar-enter {
+    animation: slideInLeft 0.3s ease-out;
+  }
+
+  @keyframes slideInLeft {
+    from {
+      transform: translateX(-100%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+}

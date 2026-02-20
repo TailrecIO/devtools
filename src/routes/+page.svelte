@@ -94,23 +94,7 @@
   <!-- Hero -->
   <div class="pt-4 pb-2">
     <div class="flex items-center gap-3 mb-4">
-      <div
-        class="w-10 h-10 rounded-xl bg-primary-500 flex items-center justify-center"
-      >
-        <svg
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2.5"
-          class="w-5 h-5 text-white"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5"
-          />
-        </svg>
-      </div>
+      <img src="/logo.svg" alt="DevTools Logo" class="w-10 h-10 flex-shrink-0" />
       <div>
         <h1 class="text-3xl font-bold text-white tracking-tight">DevTools</h1>
         <p class="text-surface-400 text-sm">
