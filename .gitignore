@@ -8,6 +8,8 @@ build/
 # Firebase
 .firebase/
 .firebaserc.local
+firebase-debug.log
+firebase-debug.*.log
 
 # Environment
 .env
