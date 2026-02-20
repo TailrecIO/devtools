@@ -1,9 +1,8 @@
-import { skeleton } from '@skeletonlabs/tw-plugin';
 import { join } from 'path';
-import { createRequire } from 'module';
 import type { Config } from 'tailwindcss';
-
-const require = createRequire(import.meta.url);
+import forms from '@tailwindcss/forms';
+import typography from '@tailwindcss/typography';
+import { skeleton } from '@skeletonlabs/tw-plugin';
 
 const config = {
   darkMode: 'class',
@@ -15,14 +14,11 @@ const config = {
     extend: {}
   },
   plugins: [
+    forms,
+    typography,
     skeleton({
       themes: {
-        preset: [
-          {
-            name: 'skeleton',
-            enhancements: true
-          }
-        ]
+        preset: ['skeleton']
       }
     })
   ]

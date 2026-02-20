@@ -25,33 +25,16 @@
 </svelte:head>
 
 <AppShell
-  slotSidebarLeft="bg-surface-900 border-r border-surface-700 w-64 overflow-y-auto flex-shrink-0"
+  slotSidebarLeft="w-64 overflow-y-auto flex-shrink-0"
   regionPage="overflow-y-auto"
 >
   <svelte:fragment slot="header">
     <AppBar
-      background="bg-surface-900 border-b border-surface-700"
       padding="px-6 py-3"
     >
       <svelte:fragment slot="lead">
         <div class="flex items-center gap-3">
-          <div
-            class="w-8 h-8 rounded-lg bg-primary-500 flex items-center justify-center flex-shrink-0"
-          >
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2.5"
-              class="w-4 h-4 text-white"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5"
-              />
-            </svg>
-          </div>
+          <img src="/logo.svg" alt="DevTools Logo" class="w-8 h-8 flex-shrink-0" />
           <a
             href="/"
             class="flex items-baseline gap-2 hover:opacity-80 transition-opacity"
@@ -70,7 +53,7 @@
           href="https://wsgrok.com"
           target="_blank"
           rel="noopener noreferrer"
-          class="flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-lg border border-surface-700 bg-surface-800 text-surface-400 hover:text-white hover:border-surface-600 transition-all"
+          class="btn btn-sm variant-ghost-surface"
         >
           wsgrok.com
         </a>

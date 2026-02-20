@@ -112,23 +112,17 @@
                 href={tool.path}
                 class="flex items-center gap-3 px-2 py-2 rounded-lg text-sm font-medium transition-all duration-150
                   {currentPath === tool.path
-                    ? 'bg-primary-500/15 text-primary-300 border border-primary-500/20'
-                    : 'text-surface-300 hover:bg-surface-800 hover:text-white border border-transparent'}"
+                    ? 'bg-primary-500/15 text-primary-300'
+                    : 'hover:bg-surface-800/50'}"
               >
-                <div class="w-7 h-7 rounded-md flex items-center justify-center flex-shrink-0 font-mono text-[9px] font-bold
-                  {currentPath === tool.path
-                    ? 'bg-primary-500/30 text-primary-300'
-                    : 'bg-surface-700 text-surface-400'}">
+                <div class="w-7 h-7 rounded-md flex items-center justify-center flex-shrink-0 font-mono text-[9px] font-bold {currentPath === tool.path ? 'bg-primary-500/20 text-primary-400' : 'bg-surface-800 text-surface-400'}">
                   {tool.badge}
                 </div>
                 <span>{tool.name}</span>
                 {#if tool.tag}
-                  <span class="ml-auto text-[9px] font-medium px-1.5 py-0.5 rounded
-                    {currentPath === tool.path
-                      ? 'bg-primary-500/20 text-primary-400'
-                      : 'bg-surface-700 text-surface-500'}">{tool.tag}</span>
+                  <span class="ml-auto text-xs px-2 py-0.5 rounded {currentPath === tool.path ? 'bg-primary-500/20 text-primary-400' : 'bg-surface-800 text-surface-400'}">{tool.tag}</span>
                 {:else if currentPath === tool.path}
-                  <div class="ml-auto w-1.5 h-1.5 rounded-full bg-primary-400"></div>
+                  <div class="ml-auto w-1.5 h-1.5 rounded-full bg-primary-500"></div>
                 {/if}
               </a>
             </li>
@@ -138,7 +132,8 @@
     {/each}
   </nav>
 
-  <div class="px-4 pt-4 mt-auto border-t border-surface-700">
-    <p class="text-[10px] text-surface-600 text-center">All processing done client-side</p>
+  <div class="px-4 pt-4 mt-auto">
+    <hr class="opacity-50 mb-4" />
+    <p class="text-xs opacity-60 text-center">All processing done client-side</p>
   </div>
 </div>

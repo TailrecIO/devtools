@@ -26,3 +26,7 @@ Thumbs.db
 *.njsproj
 *.sln
 *.sw?
+
+# Tauri
+src-tauri/target/
+src-tauri/WixTools/
