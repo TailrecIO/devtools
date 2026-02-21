@@ -94,7 +94,7 @@
   <!-- Hero -->
   <div class="pt-4 pb-2">
     <div class="flex items-center gap-3 mb-4">
-      <img src="/logo.svg" alt="DevTools Logo" class="w-10 h-10 flex-shrink-0" />
+      <img src="/logo.png" alt="DevTools Logo" class="w-10 h-10 flex-shrink-0" />
       <div>
         <h1 class="text-3xl font-bold text-white tracking-tight">DevTools</h1>
         <p class="text-surface-400 text-sm">

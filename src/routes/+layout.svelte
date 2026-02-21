@@ -10,6 +10,8 @@
   hljs.registerLanguage("json", json);
   storeHighlightJs.set(hljs);
 
+  const SITE_URL = "https://devtools.wsgrok.com";
+
   let mobileMenuOpen = false;
 
   function toggleMobileMenu() {
@@ -31,9 +33,13 @@
   <meta property="og:title" content="DevTools — Developer Utilities" />
   <meta property="og:description" content="Privacy-first developer utilities. Base64, URL, JSON, JWT, Regex, UUID, Hash — everything runs entirely in your browser. No data is ever sent to a server." />
   <meta property="og:url" content={$page.url.href} />
-  <meta name="twitter:card" content="summary" />
+  <meta property="og:image" content="{SITE_URL}/screenshot.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="DevTools — Developer Utilities" />
   <meta name="twitter:description" content="Privacy-first developer utilities. Base64, URL, JSON, JWT, Regex, UUID, Hash — everything runs entirely in your browser. No data is ever sent to a server." />
+  <meta name="twitter:image" content="{SITE_URL}/screenshot.jpg" />
   <link rel="canonical" href={$page.url.href} />
 </svelte:head>
 
@@ -65,7 +71,7 @@
             </svg>
           </button>
 
-          <img src="/logo.svg" alt="DevTools Logo" class="w-8 h-8 flex-shrink-0" />
+          <img src="/logo.png" alt="DevTools Logo" class="w-8 h-8 flex-shrink-0" />
           <a
             href="/"
             class="flex items-baseline gap-2.5 hover:opacity-80 transition-all duration-200"
