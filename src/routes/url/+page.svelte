@@ -1,4 +1,6 @@
 <script lang="ts">
+  import TechnicalDetails from '$lib/components/TechnicalDetails.svelte';
+
   type EncodeMode = 'component' | 'full';
 
   let input = '';
@@ -182,4 +184,30 @@
       {/each}
     </div>
   </div>
+
+  <TechnicalDetails
+    title="Understanding URL Encoding"
+    sections={[
+      {
+        heading: "What is URL Encoding?",
+        content: "URL encoding (also called percent-encoding) converts characters into a format that can be safely transmitted over the internet. Special characters are replaced with % followed by two hexadecimal digits representing the character's ASCII code. For example, a space becomes %20."
+      },
+      {
+        heading: "encodeURIComponent vs encodeURI",
+        content: "encodeURIComponent encodes ALL special characters except: A-Z a-z 0-9 - _ . ! ~ * ' ( ). Use this for encoding query parameters, form data, or any user input that goes into a URL. encodeURI only encodes characters that are illegal in URLs, preserving URL structure characters like : / ? # [ ]. Use this for encoding complete URLs."
+      },
+      {
+        heading: "Common Characters Encoded",
+        content: "Space → %20 or +, & → %26, ? → %3F, = → %3D, # → %23, / → %2F (component mode), @ → %40 (component mode). Characters outside ASCII are first converted to UTF-8 bytes, then each byte is percent-encoded."
+      },
+      {
+        heading: "When to Use Each Mode",
+        content: "Use encodeURIComponent for: query parameter values (?q=value), form data, user input going into URLs, path segments with special characters. Use encodeURI for: encoding full URLs while preserving structure, encoding URL templates. Never manually encode URLs. Always use these functions."
+      },
+      {
+        heading: "Common Mistakes",
+        content: "Don't double-encode: encoding an already-encoded string creates %25 (encoded %). Don't encode the entire URL with encodeURIComponent. It will break the URL structure. Don't forget to encode user input before adding to URLs. Failure to do so can cause bugs or security issues."
+      }
+    ]}
+  />
 </div>

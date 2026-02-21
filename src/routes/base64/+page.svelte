@@ -1,4 +1,6 @@
 <script lang="ts">
+  import TechnicalDetails from '$lib/components/TechnicalDetails.svelte';
+
   let input = '';
   let output = '';
   let mode: 'encode' | 'decode' = 'encode';
@@ -175,4 +177,30 @@
       Clear
     </button>
   </div>
+
+  <TechnicalDetails
+    title="How Base64 Encoding Works"
+    sections={[
+      {
+        heading: "What is Base64?",
+        content: "Base64 is a binary-to-text encoding scheme that converts binary data into an ASCII string format using 64 printable characters (A-Z, a-z, 0-9, +, /). It's commonly used to encode binary data for transmission over text-based protocols like email or JSON."
+      },
+      {
+        heading: "How It Works",
+        content: "Base64 takes binary data in groups of 3 bytes (24 bits), splits them into 4 groups of 6 bits each, and maps each 6-bit group to one of 64 characters. If the input isn't divisible by 3, padding characters (=) are added to the end to indicate missing bytes."
+      },
+      {
+        heading: "Unicode Support",
+        content: "This tool properly handles Unicode characters by first encoding text to UTF-8 bytes using TextEncoder, then applying Base64 encoding. When decoding, it reverses this process: Base64 → UTF-8 bytes → Unicode text. This ensures emoji, accented characters, and other non-ASCII text work correctly."
+      },
+      {
+        heading: "Why Use Base64?",
+        content: "Base64 is useful when you need to embed binary data (images, files) in text formats like JSON or HTML. It's also used in data URIs, email attachments (MIME), and authentication tokens. Note: Base64 increases data size by ~33% and is NOT encryption. It's easily reversible."
+      },
+      {
+        heading: "Common Use Cases",
+        content: "Embedding images in CSS/HTML (data URIs), encoding JWT tokens, transmitting binary data over JSON APIs, email attachments, encoding credentials in HTTP Basic Authentication, and storing binary data in text-only databases."
+      }
+    ]}
+  />
 </div>

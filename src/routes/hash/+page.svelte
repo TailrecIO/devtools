@@ -2,6 +2,7 @@
   import { md5, sha1, ripemd160 } from '@noble/hashes/legacy.js';
   import { sha224, sha256, sha384, sha512, sha512_224, sha512_256 } from '@noble/hashes/sha2.js';
   import { sha3_224, sha3_256, sha3_384, sha3_512 } from '@noble/hashes/sha3.js';
+  import TechnicalDetails from '$lib/components/TechnicalDetails.svelte';
 
   type AlgoId =
     | 'md5' | 'sha1' | 'ripemd160'
@@ -320,4 +321,30 @@
       </div>
     {/if}
   </div>
+
+  <TechnicalDetails
+    title="Understanding Cryptographic Hash Functions"
+    sections={[
+      {
+        heading: "What is a Hash Function?",
+        content: "A cryptographic hash function takes input data of any size and produces a fixed-size output (called a hash or digest). The same input always produces the same hash, but even tiny changes to the input create completely different hashes. Hash functions are one-way: you cannot reverse a hash to get the original data."
+      },
+      {
+        heading: "Common Hash Algorithms",
+        content: "MD5 (128-bit) and SHA-1 (160-bit) are legacy algorithms considered insecure for cryptographic purposes due to collision vulnerabilities. SHA-2 family (SHA-256, SHA-512) is widely used and secure. SHA-3 (Keccak) is the latest standard, designed as an alternative to SHA-2. RIPEMD-160 is used in Bitcoin addresses."
+      },
+      {
+        heading: "Use Cases",
+        content: "File integrity verification (checksums), password storage (hashed with salt), digital signatures, blockchain (Bitcoin uses SHA-256), data deduplication, and creating unique identifiers. For passwords, use specialized functions like bcrypt or Argon2, not plain hashes."
+      },
+      {
+        heading: "Security Considerations",
+        content: "Never use MD5 or SHA-1 for security purposes. They have known collision attacks. For new applications, prefer SHA-256 or SHA3-256. Hashing alone is NOT suitable for password storage. Use password hashing functions (bcrypt, Argon2) that include salting and are designed to be slow. Hashes are deterministic and public, so they don't provide confidentiality."
+      },
+      {
+        heading: "Which Algorithm Should I Use?",
+        content: "For general checksums: SHA-256. For maximum compatibility: SHA-256. For future-proofing: SHA3-256. For legacy systems only: MD5 (checksums only, not security). For Bitcoin/cryptocurrency: SHA-256 or RIPEMD-160. For password hashing: None of these—use bcrypt, Argon2, or scrypt instead."
+      }
+    ]}
+  />
 </div>

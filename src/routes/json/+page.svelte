@@ -1,5 +1,7 @@
 <script lang="ts">
   import { CodeBlock } from '@skeletonlabs/skeleton';
+  import TechnicalDetails from '$lib/components/TechnicalDetails.svelte';
+  import CodeEditor from '$lib/components/CodeEditor.svelte';
 
   let input = '';
   let output = '';
@@ -99,6 +101,9 @@
     process();
   }
 
+  // Process JSON when input, mode, indent, or sortKeys change
+  $: input, mode, indent, sortKeys, process();
+
   $: indent, sortKeys, mode, input, process();
 </script>
 
@@ -182,12 +187,11 @@
           {/if}
         </div>
       </div>
-      <textarea
+      <CodeEditor
         bind:value={input}
+        language="json"
         placeholder="Enter or paste JSON here..."
-        class="w-full h-[32rem] px-3 py-3 rounded-lg bg-surface-800 border text-white font-mono text-sm resize-none focus:outline-none placeholder-surface-600 transition-colors
-          {error ? 'border-error-500/50 focus:border-error-500' : 'border-surface-700 focus:border-primary-500'}"
-        spellcheck="false"
+        minHeight="32rem"
       />
     </div>
 
@@ -209,13 +213,18 @@
           {copied ? 'Copied!' : 'Copy'}
         </button>
       </div>
-      <div class="h-[32rem] overflow-auto rounded-lg border border-surface-700 bg-surface-800 {!output ? 'flex items-center justify-center' : ''}">
-        {#if output}
-          <CodeBlock language="json" code={output} buttonLabel="Copy" rounded="rounded-lg" />
-        {:else}
+      {#if output}
+        <CodeEditor
+          bind:value={output}
+          language="json"
+          readonly={true}
+          minHeight="32rem"
+        />
+      {:else}
+        <div class="h-[32rem] rounded-lg border border-surface-700 bg-surface-800 flex items-center justify-center">
           <p class="text-surface-600 text-sm">Formatted output will appear here</p>
-        {/if}
-      </div>
+        </div>
+      {/if}
     </div>
   </div>
 
@@ -238,4 +247,30 @@
       Clear
     </button>
   </div>
+
+  <TechnicalDetails
+    title="Understanding JSON Format"
+    sections={[
+      {
+        heading: "What is JSON?",
+        content: "JSON (JavaScript Object Notation) is a lightweight, text-based data format for exchanging structured data between systems. It's human-readable and language-independent, making it the de facto standard for web APIs. JSON supports objects (key-value pairs), arrays, strings, numbers, booleans, and null."
+      },
+      {
+        heading: "JSON Syntax Rules",
+        content: "Keys must be double-quoted strings. String values must use double quotes, not single quotes. No trailing commas allowed after the last item. Numbers don't need quotes. Only these types are valid: object, array, string, number, true, false, null. Comments are NOT allowed in JSON (use JSON5 if you need comments)."
+      },
+      {
+        heading: "Prettify vs Minify",
+        content: "Prettify (format) adds whitespace and line breaks for readability, useful for debugging and human inspection. Minify removes all unnecessary whitespace, reducing file size for transmission. APIs often return minified JSON to save bandwidth. Use prettify during development, minify for production."
+      },
+      {
+        heading: "Common JSON Errors",
+        content: "Single quotes instead of double quotes, trailing commas after last array/object element, unquoted keys, comments (use // or /* */), undefined values (use null instead), circular references, dates (JSON has no date type, use ISO 8601 strings), NaN or Infinity (not valid JSON)."
+      },
+      {
+        heading: "Best Practices",
+        content: "Always validate JSON before sending it. Use consistent indentation (2 or 4 spaces). Keep keys meaningful and concise. Use camelCase or snake_case consistently. For dates, use ISO 8601 format (YYYY-MM-DDTHH:mm:ss.sssZ). For large numbers, consider strings to avoid precision loss. Sort keys alphabetically for easier comparison and version control."
+      }
+    ]}
+  />
 </div>

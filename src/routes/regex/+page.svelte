@@ -1,4 +1,6 @@
 <script lang="ts">
+  import TechnicalDetails from '$lib/components/TechnicalDetails.svelte';
+
   interface MatchResult {
     value: string;
     index: number;
@@ -428,4 +430,29 @@
     </div>
   </div>
 
+  <TechnicalDetails
+    title="Understanding Regular Expressions"
+    sections={[
+      {
+        heading: "What are Regular Expressions?",
+        content: "Regular expressions (regex) are patterns used to match, search, and manipulate text. They provide a powerful way to find specific patterns in strings, like email addresses, phone numbers, or custom text patterns. Regex is supported in most programming languages with similar syntax."
+      },
+      {
+        heading: "Common Regex Syntax",
+        content: ". (dot) matches any character. * means 0 or more times. + means 1 or more times. ? means 0 or 1 time. [abc] matches any character in brackets. [^abc] matches any character NOT in brackets. \\d matches digits (0-9). \\w matches word characters (A-Z, a-z, 0-9, _). \\s matches whitespace. ^ matches start of string. $ matches end of string. ( ) creates capture groups."
+      },
+      {
+        heading: "Regex Flags",
+        content: "g (global) finds all matches, not just the first. i (case-insensitive) makes the pattern match regardless of case. m (multiline) makes ^ and $ match line breaks, not just string start/end. This tool displays matches with highlighting and extracts capture groups for debugging."
+      },
+      {
+        heading: "Common Patterns",
+        content: "Email: ^[\\w.-]+@[\\w.-]+\\.[a-zA-Z]{2,}$. URL: https?://[\\w.-]+\\.[a-z]{2,}(/[^\\s]*)?. Phone (US): \\(?\\d{3}\\)?[\\s.-]?\\d{3}[\\s.-]?\\d{4}. Date (YYYY-MM-DD): \\d{4}-\\d{2}-\\d{2}. Hex color: #[0-9A-Fa-f]{6}. IPv4: \\b\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\b."
+      },
+      {
+        heading: "Tips and Best Practices",
+        content: "Test your regex with various inputs. Edge cases often break patterns. Use capture groups ( ) to extract specific parts. Escape special characters with \\ when you want the literal character. Be specific. Overly broad patterns cause false matches. Use online regex testers during development. For complex parsing (HTML, JSON), use proper parsers instead of regex."
+      }
+    ]}
+  />
 </div>

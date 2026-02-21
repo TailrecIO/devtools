@@ -1,4 +1,6 @@
 <script lang="ts">
+  import TechnicalDetails from '$lib/components/TechnicalDetails.svelte';
+
   let input = '';
   let output = '';
   let mode: 'encode' | 'decode' = 'encode';
@@ -225,4 +227,30 @@
       {/each}
     </div>
   </div>
+
+  <TechnicalDetails
+    title="Understanding Hexadecimal Encoding"
+    sections={[
+      {
+        heading: "What is Hexadecimal?",
+        content: "Hexadecimal (hex) is a base-16 number system using digits 0-9 and letters A-F. Each hex digit represents 4 bits, so two hex digits represent one byte (8 bits). Hex encoding converts bytes to their hexadecimal representation. For example, the letter 'A' (ASCII 65) becomes '41' in hex."
+      },
+      {
+        heading: "How It Works",
+        content: "Text is first converted to UTF-8 bytes using TextEncoder. Each byte value (0-255) is converted to a 2-digit hexadecimal string. For example, 'Hello' becomes '48656c6c6f'. Decoding reverses this: hex pairs are converted back to bytes, then decoded as UTF-8 text."
+      },
+      {
+        heading: "Hex vs Base64",
+        content: "Hex represents binary data using only 0-9 and A-F (16 characters), increasing size by 2x. Base64 uses 64 characters, increasing size by ~33%. Hex is more human-readable and easier to debug byte-by-byte. Base64 is more compact. Use hex for checksums, color codes, memory addresses, and debugging. Use Base64 for data transmission and storage."
+      },
+      {
+        heading: "Common Use Cases",
+        content: "Color codes in web design (#FF5733), cryptographic hashes (SHA-256 output), MAC addresses (00:1B:44:11:3A:B7), memory addresses in programming, checksums and file signatures, binary data inspection and debugging, encoding binary data for logs or display."
+      },
+      {
+        heading: "Reading Hex",
+        content: "Each pair of hex digits is one byte. 00-7F are ASCII characters. 80-FF are extended ASCII or part of multi-byte UTF-8 sequences. Common patterns: 20 = space, 0A = newline (LF), 0D = carriage return (CR), 00 = null byte. Use hex editors to inspect binary files byte-by-byte."
+      }
+    ]}
+  />
 </div>

@@ -1,5 +1,7 @@
 <script lang="ts">
   import { CodeBlock } from '@skeletonlabs/skeleton';
+  import TechnicalDetails from '$lib/components/TechnicalDetails.svelte';
+  import CodeEditor from '$lib/components/CodeEditor.svelte';
 
   // ─── Types ────────────────────────────────────────────────────
   type AlgKey = 'RS256' | 'RS384' | 'RS512' | 'PS256' | 'PS384' | 'PS512';
@@ -517,18 +519,18 @@
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
         <div class="space-y-2">
           <span class="text-xs font-semibold text-surface-400 uppercase tracking-wider">Header</span>
-          <textarea
+          <CodeEditor
             bind:value={signHeader}
-            class="w-full h-48 px-3 py-3 rounded-lg bg-surface-800 border border-surface-700 text-white font-mono text-sm resize-none focus:outline-none focus:border-primary-500 transition-colors"
-            spellcheck="false"
+            language="json"
+            minHeight="12rem"
           />
         </div>
         <div class="space-y-2">
           <span class="text-xs font-semibold text-surface-400 uppercase tracking-wider">Payload</span>
-          <textarea
+          <CodeEditor
             bind:value={signPayload}
-            class="w-full h-48 px-3 py-3 rounded-lg bg-surface-800 border border-surface-700 text-white font-mono text-sm resize-none focus:outline-none focus:border-primary-500 transition-colors"
-            spellcheck="false"
+            language="json"
+            minHeight="12rem"
           />
         </div>
       </div>
@@ -688,4 +690,29 @@
     </div>
   {/if}
 
+  <TechnicalDetails
+    title="How JWT with RSA Works"
+    sections={[
+      {
+        heading: "What is Asymmetric Cryptography?",
+        content: "Unlike HMAC (symmetric), RSA uses a key pair: a private key for signing and a public key for verification. The private key must be kept secret by the issuer, while the public key can be distributed freely. Anyone with the public key can verify tokens, but only the private key holder can create valid signatures."
+      },
+      {
+        heading: "RSA vs PSS Algorithms",
+        content: "RS256/384/512 use PKCS#1 v1.5 padding (traditional RSA signatures). PS256/384/512 use PSS (Probabilistic Signature Scheme) padding, which is more secure and recommended for new applications. Both are widely supported. PSS provides better security against certain attacks but requires slightly more computation."
+      },
+      {
+        heading: "Key Generation",
+        content: "This tool generates RSA key pairs using WebCrypto API with 2048-bit keys (minimum secure size). The private key can sign tokens, and the public key verifies them. Keys are generated in PEM format (PKCS#8 for private, SPKI for public). Never share or expose your private key. It's equivalent to a password."
+      },
+      {
+        heading: "When to Use RSA vs HMAC",
+        content: "Use RSA (asymmetric) when: the token issuer and verifier are different parties, you need to distribute public keys for verification across multiple services, you want read-only verification without sharing secrets. Use HMAC (symmetric) when: the issuer and verifier are the same service or trust domain, you want faster performance, key distribution is secure."
+      },
+      {
+        heading: "Security Best Practices",
+        content: "Use minimum 2048-bit keys (4096-bit for high security). Store private keys securely (HSM, key vaults, encrypted storage). Rotate keys periodically. Set token expiration times (exp claim). Prefer PS algorithms over RS for new applications. Never log or expose private keys. Use JWK format for key distribution when possible."
+      }
+    ]}
+  />
 </div>

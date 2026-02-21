@@ -1,5 +1,7 @@
 <script lang="ts">
   import { CodeBlock } from '@skeletonlabs/skeleton';
+  import TechnicalDetails from '$lib/components/TechnicalDetails.svelte';
+  import CodeEditor from '$lib/components/CodeEditor.svelte';
 
   // ─── Decode tab ───────────────────────────────────────────────
   let decodeInput = '';
@@ -438,20 +440,20 @@
         <!-- Header JSON -->
         <div class="space-y-2">
           <span class="text-xs font-semibold text-surface-400 uppercase tracking-wider">Header</span>
-          <textarea
+          <CodeEditor
             bind:value={encodeHeader}
-            class="w-full h-52 px-3 py-3 rounded-lg bg-surface-800 border border-surface-700 text-white font-mono text-sm resize-none focus:outline-none focus:border-primary-500 transition-colors"
-            spellcheck="false"
+            language="json"
+            minHeight="13rem"
           />
         </div>
 
         <!-- Payload JSON -->
         <div class="space-y-2">
           <span class="text-xs font-semibold text-surface-400 uppercase tracking-wider">Payload</span>
-          <textarea
+          <CodeEditor
             bind:value={encodePayload}
-            class="w-full h-52 px-3 py-3 rounded-lg bg-surface-800 border border-surface-700 text-white font-mono text-sm resize-none focus:outline-none focus:border-primary-500 transition-colors"
-            spellcheck="false"
+            language="json"
+            minHeight="13rem"
           />
         </div>
       </div>
@@ -504,4 +506,30 @@
       {/if}
     </div>
   {/if}
+
+  <TechnicalDetails
+    title="How JWT with HMAC Works"
+    sections={[
+      {
+        heading: "What is JWT?",
+        content: "JSON Web Token (JWT) is a compact, URL-safe token format for securely transmitting information between parties as a JSON object. It consists of three parts: Header, Payload, and Signature, separated by dots (.)."
+      },
+      {
+        heading: "HMAC (Symmetric) Signing",
+        content: "HMAC (Hash-based Message Authentication Code) uses a shared secret key to sign and verify JWTs. Both the issuer and verifier must know the same secret. Common algorithms are HS256 (HMAC-SHA256), HS384 (HMAC-SHA384), and HS512 (HMAC-SHA512). The signature ensures the token hasn't been tampered with."
+      },
+      {
+        heading: "Token Structure",
+        content: "Header contains metadata like algorithm (alg) and token type (typ). Payload contains claims (data) such as user ID, expiration time, and custom fields. Both are Base64URL-encoded. The Signature is created by hashing the encoded header + payload with the secret key using the specified algorithm."
+      },
+      {
+        heading: "Security Considerations",
+        content: "Never expose your secret key publicly. Use strong, randomly generated secrets (at least 256 bits for HS256). Always verify signatures before trusting token data. Set expiration times (exp claim) to limit token lifetime. HMAC is faster than RSA but requires sharing the secret, making it suitable for same-system authentication but not for distributed systems where you can't safely share secrets."
+      },
+      {
+        heading: "When to Use HMAC vs RSA",
+        content: "Use HMAC (symmetric) when the token issuer and verifier are the same application or service, or when you can securely share a secret. Use RSA (asymmetric) when you need to distribute public keys for verification across multiple services, or when issuers and verifiers are operated by different parties."
+      }
+    ]}
+  />
 </div>

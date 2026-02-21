@@ -1,4 +1,6 @@
 <script lang="ts">
+  import TechnicalDetails from '$lib/components/TechnicalDetails.svelte';
+
   let input = '';
   let output = '';
   let mode: 'escape' | 'unescape' = 'escape';
@@ -209,4 +211,30 @@
       {/each}
     </div>
   </div>
+
+  <TechnicalDetails
+    title="Understanding JSON String Escaping"
+    sections={[
+      {
+        heading: "What is JSON Escaping?",
+        content: "JSON escaping converts special characters in strings so they can be safely embedded as JSON string values. Characters like quotes, backslashes, and control characters must be escaped to create valid JSON. For example, a newline becomes \\n and a double quote becomes \\\"."
+      },
+      {
+        heading: "Characters That Must Be Escaped",
+        content: "Double quote (\") → \\\", Backslash (\\) → \\\\, Newline → \\n, Carriage return → \\r, Tab → \\t, Form feed → \\f, Backspace → \\b. Unicode characters outside ASCII can be escaped as \\uXXXX (4-digit hex). Forward slash (/) can optionally be escaped as \\/ but isn't required."
+      },
+      {
+        heading: "Escape vs Unescape",
+        content: "Escape takes raw text and converts special characters to escape sequences, making it safe to use as a JSON string value. Unescape reverses this process, converting escape sequences back to their original characters. Use escape when preparing user input for JSON. Use unescape when extracting string values from JSON."
+      },
+      {
+        heading: "Common Use Cases",
+        content: "Preparing user input for JSON APIs, embedding multi-line text in JSON, safely including quotes within JSON strings, debugging JSON string values, converting between raw text and JSON-safe strings, handling error messages or log data in JSON format."
+      },
+      {
+        heading: "Important Notes",
+        content: "JSON.stringify() automatically escapes strings, so you rarely need manual escaping in JavaScript. This tool is useful when working with JSON strings outside of JSON.parse/stringify (like in templates or when hand-crafting JSON). Don't double-escape. Escaping an already-escaped string creates invalid results like \\\\\\\\ instead of \\\\."
+      }
+    ]}
+  />
 </div>

@@ -85,3 +85,65 @@ npm run tauri version 1.2.3
 ```
 
 This updates both files in a single command, keeping versions in sync.
+
+## Adding New Tools/Routes
+
+To add a new tool to the application, follow these steps:
+
+### 1. Create the Page Component
+
+Create a new route file at `src/routes/your-tool/+page.svelte`:
+
+```svelte
+<script lang="ts">
+  // Your tool logic here
+</script>
+
+<svelte:head>
+  <title>Your Tool — DevTools</title>
+</svelte:head>
+
+<div>
+  <!-- Your tool UI here -->
+</div>
+```
+
+### 2. Add to Sidebar Navigation
+
+Update `src/lib/components/Sidebar.svelte` to include your tool in the appropriate group:
+
+```typescript
+{
+  title: 'Your Category',
+  tools: [
+    {
+      name: 'Your Tool',
+      path: '/your-tool',
+      badge: 'ABC',
+      description: 'Short description of what it does'
+    }
+  ]
+}
+```
+
+### 3. Update Sitemap
+
+Add the new route to `src/routes/sitemap.xml/+server.ts`:
+
+```typescript
+const routes = [
+  // ... existing routes
+  { path: 'your-tool', priority: '0.8', changefreq: 'monthly' }
+];
+```
+
+The sitemap will be automatically regenerated on the next build.
+
+### 4. Build and Test
+
+```bash
+npm run build
+npm run preview
+```
+
+Visit http://localhost:4173/your-tool to test your new tool.
