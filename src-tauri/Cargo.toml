@@ -1,10 +1,10 @@
 [package]
-name = "app"
-version = "0.1.0"
-description = "A Tauri App"
-authors = ["you"]
-license = ""
-repository = ""
+name = "devtools"
+version = "0.0.2"
+description = "Privacy-first developer utilities -- Base64, JSON, JWT, Regex, Hash, UUID. Runs entirely offline"
+authors = ["Hussachai Puripunpinyo"]
+license = "MIT"
+repository = "https://github.com/TailrecIO/devtools/"
 edition = "2021"
 rust-version = "1.77.2"
 

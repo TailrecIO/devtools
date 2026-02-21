@@ -65,3 +65,23 @@ Outputs are located in `src-tauri/target/release/bundle/`:
 
 **Automated builds:**
 Desktop apps are built automatically via GitHub Actions on tagged releases (`v*`) or manual workflow dispatch.
+
+## Version Management
+
+Tauri CLI automatically syncs versions across `package.json` and `src-tauri/Cargo.toml`:
+
+```bash
+# Bump patch version (0.0.1 -> 0.0.2)
+npm run tauri version patch
+
+# Bump minor version (0.0.2 -> 0.1.0)
+npm run tauri version minor
+
+# Bump major version (0.1.0 -> 1.0.0)
+npm run tauri version major
+
+# Set specific version
+npm run tauri version 1.2.3
+```
+
+This updates both files in a single command, keeping versions in sync.

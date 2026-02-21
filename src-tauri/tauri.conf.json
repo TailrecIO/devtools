@@ -1,7 +1,7 @@
 {
   "$schema": "../node_modules/@tauri-apps/cli/config.schema.json",
   "productName": "DevTools",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "identifier": "com.wsgrok.devtools",
   "build": {
     "frontendDist": "../build",
@@ -30,7 +30,7 @@
     "targets": "all",
     "category": "DeveloperTool",
     "shortDescription": "Privacy-first developer utilities",
-    "longDescription": "Fast, privacy-first developer utilities. Base64, URL, JSON, JWT, Regex, UUID, Hash — everything runs entirely in your browser.",
+    "longDescription": "Fast, privacy-first developer utilities. Base64, URL, JSON, JWT, Regex, UUID, Hash — everything runs entirely offline.",
     "icon": [
       "icons/32x32.png",
       "icons/128x128.png",
