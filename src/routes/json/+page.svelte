@@ -103,8 +103,6 @@
 
   // Process JSON when input, mode, indent, or sortKeys change
   $: input, mode, indent, sortKeys, process();
-
-  $: indent, sortKeys, mode, input, process();
 </script>
 
 <svelte:head>
@@ -190,7 +188,7 @@
       <CodeEditor
         bind:value={input}
         language="json"
-        placeholder="Enter or paste JSON here..."
+        placeholderText="Enter or paste JSON here..."
         minHeight="32rem"
       />
     </div>
@@ -215,7 +213,7 @@
       </div>
       {#if output}
         <CodeEditor
-          bind:value={output}
+          value={output}
           language="json"
           readonly={true}
           minHeight="32rem"

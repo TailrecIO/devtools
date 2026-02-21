@@ -2,12 +2,13 @@
   import { onMount, onDestroy } from 'svelte';
   import { EditorView, basicSetup } from 'codemirror';
   import { EditorState } from '@codemirror/state';
+  import { placeholder } from '@codemirror/view';
   import { json } from '@codemirror/lang-json';
   import { oneDark } from '@codemirror/theme-one-dark';
 
   export let value = '';
   export let language: 'json' | 'text' = 'text';
-  export let placeholder = '';
+  export let placeholderText = '';
   export let readonly = false;
   export let minHeight = '200px';
 
@@ -73,8 +74,8 @@
     const languageExt = getLanguageExtension();
     if (languageExt) extensions.push(languageExt);
 
-    if (placeholder) {
-      extensions.push(EditorView.placeholder(placeholder));
+    if (placeholderText) {
+      extensions.push(placeholder(placeholderText));
     }
 
     editorView = new EditorView({
