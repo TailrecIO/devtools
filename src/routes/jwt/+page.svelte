@@ -472,7 +472,7 @@
         on:click={encodeJwt}
         class="px-4 py-2 rounded-lg bg-primary-500 hover:bg-primary-400 text-white text-sm font-medium transition-colors"
       >
-        Generate Token
+        Sign Token
       </button>
 
       {#if encodeError}

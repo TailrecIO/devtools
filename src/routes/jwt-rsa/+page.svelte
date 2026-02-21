@@ -20,7 +20,7 @@
   };
 
   // ─── Tab state ───────────────────────────────────────────────
-  let mode: 'decode' | 'sign' | 'verify' = 'decode';
+  let mode: 'decode' | 'encode' | 'verify' = 'decode';
 
   // ─── Key generation ──────────────────────────────────────────
   let genAlg: AlgKey = 'RS256';
@@ -413,7 +413,7 @@
 
   <!-- ── Tab Toggle ─────────────────────────────────────────── -->
   <div class="flex items-center gap-1 p-1 rounded-lg bg-surface-800 border border-surface-700 w-fit">
-    {#each ['decode', 'sign', 'verify'] as tab}
+    {#each ['decode', 'encode', 'verify'] as tab}
       <button
         class="px-4 py-1.5 rounded-md text-sm font-medium capitalize transition-all
           {mode === tab ? 'bg-primary-500 text-white shadow-sm' : 'text-surface-400 hover:text-white'}"
@@ -494,7 +494,7 @@
   {/if}
 
   <!-- ── SIGN ───────────────────────────────────────────────── -->
-  {#if mode === 'sign'}
+  {#if mode === 'encode'}
     <div class="space-y-4">
       <!-- Algorithm selector -->
       <div class="flex items-center gap-3 flex-wrap">

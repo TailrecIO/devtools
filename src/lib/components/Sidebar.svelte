@@ -57,13 +57,13 @@
       title: 'Security',
       tools: [
         {
-          name: 'JWT Symmetric',
+          name: 'JWT (HMAC)',
           path: '/jwt',
           badge: 'JWT',
-          description: 'Encode & decode JWT (HMAC)'
+          description: 'Sign & verify JWT (HMAC)'
         },
         {
-          name: 'JWT Asymmetric',
+          name: 'JWT (RSA)',
           path: '/jwt-rsa',
           badge: 'RSA',
           description: 'Sign & verify JWT with RSA/PSS'
