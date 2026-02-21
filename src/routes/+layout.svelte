@@ -32,7 +32,7 @@
   <meta property="og:site_name" content="DevTools" />
   <meta property="og:title" content="DevTools — Developer Utilities" />
   <meta property="og:description" content="Privacy-first developer utilities. Base64, URL, JSON, JWT, Regex, UUID, Hash — everything runs entirely in your browser. No data is ever sent to a server." />
-  <meta property="og:url" content={$page.url.href} />
+  <meta property="og:url" content="{SITE_URL}{$page.url.pathname}" />
   <meta property="og:image" content="{SITE_URL}/screenshot.jpg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
@@ -40,7 +40,7 @@
   <meta name="twitter:title" content="DevTools — Developer Utilities" />
   <meta name="twitter:description" content="Privacy-first developer utilities. Base64, URL, JSON, JWT, Regex, UUID, Hash — everything runs entirely in your browser. No data is ever sent to a server." />
   <meta name="twitter:image" content="{SITE_URL}/screenshot.jpg" />
-  <link rel="canonical" href={$page.url.href} />
+  <link rel="canonical" href="{SITE_URL}{$page.url.pathname}" />
 </svelte:head>
 
 <AppShell

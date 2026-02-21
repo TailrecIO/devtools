@@ -10,7 +10,18 @@
     "rewrites": [
       {
         "source": "**",
-        "destination": "/index.html"
+        "destination": "/200.html"
+      }
+    ],
+    "headers": [
+      {
+        "source": "**/*.@(html|js|css|png|jpg|jpeg|svg|webp|woff|woff2|ttf|ico)",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "max-age=31536000"
+          }
+        ]
       }
     ]
   }
